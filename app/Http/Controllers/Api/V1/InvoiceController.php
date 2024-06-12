@@ -25,7 +25,12 @@ class InvoiceController extends Controller
      */
     public function store(InvoiceStoreRequest $request)
     {
-        return $this->success('Fatura criada com sucesso!', 200, []);
+        try {
+            Invoice::create($request->validated());
+            return $this->success('Fatura criada com sucesso!', 200, []);
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage(), 500);
+        }
     }
 
     /**
