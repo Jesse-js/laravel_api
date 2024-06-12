@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\V1;
 
 use App\Enums\InvoiceTypeEnum;
+use App\Traits\HttpResponses;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -10,6 +11,7 @@ use Illuminate\Validation\Rule;
 
 class InvoiceStoreRequest extends FormRequest
 {
+    use HttpResponses;
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -36,9 +38,6 @@ class InvoiceStoreRequest extends FormRequest
 
     protected function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(response()->json([
-            'message' => 'Os dados informados não são válidos.',
-            'data' => $validator->errors(),
-        ], 422));
+        $this->error('Os Dados informados são inválidos', 422, $validator->errors());
     }
 }

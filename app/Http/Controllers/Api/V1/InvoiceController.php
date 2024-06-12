@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\InvoiceStoreRequest;
 use App\Http\Resources\V1\InvoiceResource;
 use App\Models\Invoice;
+use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      */
@@ -23,7 +25,7 @@ class InvoiceController extends Controller
      */
     public function store(InvoiceStoreRequest $request)
     {
-        return 'oi';
+        return $this->success('Fatura criada com sucesso!', 200, []);
     }
 
     /**
