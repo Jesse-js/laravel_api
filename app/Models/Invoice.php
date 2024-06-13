@@ -30,7 +30,7 @@ class Invoice extends Model
     public function filter(Request $request)
     {
         $queryFilter = (new InvoiceFilter)->filter($request);
-        
+
         if (empty($queryFilter)) {
             return InvoiceResource::collection(
                 Invoice::with('user')->get()
@@ -39,13 +39,13 @@ class Invoice extends Model
 
         $data = Invoice::with('user');
 
-        if(!empty($queryFilter['whereIn'])) {
+        if (!empty($queryFilter['whereIn'])) {
             foreach ($queryFilter['whereIn'] as $value) {
                 $data->whereIn($value[0], $value[1]);
             }
         }
 
-        if(!empty($queryFilter['where'])) {
+        if (!empty($queryFilter['where'])) {
             $data->where($queryFilter['where']);
         }
 

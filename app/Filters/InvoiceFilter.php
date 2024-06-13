@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Filters;
 
@@ -10,5 +10,4 @@ class InvoiceFilter extends Filter
         'paid' => ['eq', 'ne'],
         'payment_date' => ['gte', 'lte', 'gt', 'lt', 'eq', 'ne', 'in', 'not_in'],
     ];
-    
 }

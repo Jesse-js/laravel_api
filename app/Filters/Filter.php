@@ -50,7 +50,7 @@ abstract class Filter
             }
         }
 
-        if(empty($where) && empty($whereIn)) {
+        if (empty($where) && empty($whereIn)) {
             return [];
         }
 
