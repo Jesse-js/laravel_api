@@ -27,7 +27,7 @@ class InvoiceController extends Controller
     {
         try {
             Invoice::create($request->validated());
-            return $this->success('Fatura criada com sucesso!', 200, []);
+            return $this->success('Fatura criada com sucesso!', 200);
         } catch (\Exception $e) {
             return $this->error($e->getMessage(), 500);
         }

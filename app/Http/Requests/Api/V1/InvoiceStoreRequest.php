@@ -31,7 +31,7 @@ class InvoiceStoreRequest extends FormRequest
             'user_id' => ['required', 'exists:users,id'],
             'type' => Rule::in(InvoiceTypeEnum::values()),
             'paid' => ['required', 'numeric', 'between:0,1'],
-            'value' => ['required', 'numeric', 'between:0,99999.99'],
+            'amount' => ['required', 'numeric', 'between:0,99999.99'],
             'payment_date' => ['nullable', 'date'],
         ];
     }
