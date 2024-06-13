@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 class InvoiceController extends Controller
 {
     use HttpResponses;
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->only(['store', 'update', 'destroy']);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -33,6 +37,9 @@ class InvoiceController extends Controller
      */
     public function store(InvoiceStoreRequest $request)
     {
+        if (!auth()->user()->tokenCan('invoice-store')) {
+            return $this->error('Usuário não autorizado', 401);
+        }
         try {
             $invoice = Invoice::create($request->validated());
             $invoice = new InvoiceResource($invoice->load('user'));
