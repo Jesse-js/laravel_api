@@ -62,6 +62,9 @@ class InvoiceController extends Controller
      */
     public function update(InvoiceUpdateRequest $request, Invoice $invoice)
     {
+        if (!auth()->user()->tokenCan('invoice-update')) {
+            return $this->error('Usuário não autorizado', 401);
+        }
         try {
             $invoice->update($request->validated());
             $invoice = new InvoiceResource($invoice->load('user'));
@@ -76,6 +79,9 @@ class InvoiceController extends Controller
      */
     public function destroy(Invoice $invoice)
     {
+        if (!auth()->user()->tokenCan('invoice-destroy')) {
+            return $this->error('Usuário não autorizado', 401);
+        }
         try {
             $invoice->delete();
             return $this->success('Fatura excluída com sucesso!', 200);

@@ -13,9 +13,11 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        if(Auth::attempt($request->only('email', 'password'))) {
+        if (Auth::attempt($request->only('email', 'password'))) {
             return $this->success('Login realizado com sucesso!', 200, [
-                'token' => Auth::user()->createToken('invoice', ['invoice-store', 'invoice-update'])->plainTextToken
+                'token' => Auth::user()->createToken('invoice', [
+                    'invoice-store', 'invoice-update', 'invoice-destroy'
+                ])->plainTextToken
             ]);
         }
         return $this->error('Email ou senha inválidos!', 401);
@@ -23,6 +25,5 @@ class AuthController extends Controller
 
     public function logout()
     {
-
     }
 }
