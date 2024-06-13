@@ -6,4 +6,4 @@
 
 ## Differences
 - Work with Resources
-- Work with traits
+- Work with Traits
