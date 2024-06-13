@@ -4,11 +4,12 @@ namespace App\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\MessageBag;
 
 trait HttpResponses
 {
-    public function success(string $message = null, string|int $status = 200, array|Model $data = [])
+    public function success(string $message = null, string|int $status = 200, array|JsonResource $data = [])
     {
         return response()->json([
             'status' => $status,
