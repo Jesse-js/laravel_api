@@ -60,8 +60,13 @@ class InvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Invoice $invoice)
     {
-        //
+        try {
+            $invoice->delete();
+            return $this->success('Fatura excluída com sucesso!', 200);
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage(), 500);
+        }
     }
 }

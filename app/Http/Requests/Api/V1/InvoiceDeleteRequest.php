@@ -2,16 +2,18 @@
 
 namespace App\Http\Requests\Api\V1;
 
+use App\Traits\HttpResponses;
 use Illuminate\Foundation\Http\FormRequest;
 
 class InvoiceDeleteRequest extends FormRequest
 {
+    use HttpResponses;
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
