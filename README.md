@@ -7,3 +7,4 @@
 ## Differences
 - Work with Resources
 - Work with Traits
+- Work with api filters
